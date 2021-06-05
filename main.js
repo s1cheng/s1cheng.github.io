@@ -15,11 +15,14 @@ function setFullPage() {
 
     $("#fullpage").fullpage();
 
-    const imgUrlList = DATA[DATA.length - 1].map((url) => {
+    const data = window.DATA;
+
+    const imgUrlList = data.map((it) => {
+      const url = it["Path"];
       const name = url.split("/").slice(-1)[0];
       return name;
     });
-    for (let i = 0; i < DATA[0].length; ++i) {
+    for (let i = 0; i < data.length; ++i) {
       const imgUrl = "./images/" + imgUrlList[i];
       const liDom = $("<li></li>");
       const imgDom = $("<img />");
@@ -35,29 +38,33 @@ function setFullPage() {
       galleryDom.append(liDom);
 
       // add information
-      addInfo("Identifier", DATA[2][i]);
-      addInfo("GPS", makeLink(DATA[3][i]));
-      addInfo("Publisher", DATA[4][i]);
-      addInfo("Photograph", DATA[5][i]);
-      addInfo("Exclusive right", DATA[6][i]);
-      addInfo("Year", DATA[7][i]);
-      // addInfo("Recto_text", DATA[8][i]);
-      // addInfo("Verse_text", DATA[9][i]);
-      // addInfo("Dimentions", DATA[10][i]);
-      // addInfo("Stamps", DATA[11][i]);
-      // addInfo("Number of cards available", DATA[12][i]);
-      addInfo("Region", DATA[13][i]);
-      addInfo("Description", DATA[14][i]);
-      addInfo("Color", DATA[15][i]);
-      // addInfo("Condition", DATA[16][i]);
-      addInfo("Collection", DATA[17][i]);
-      addInfo("Scanned by", DATA[18][i]);
-      addInfo("Metadata by", DATA[19][i]);
-      addInfo("Geographical markers", DATA[20][i]);
-      addInfo("Image wrapper", DATA[21][i]);
-      addInfo("Path", makeLink(DATA[22][i]));
+      addInfo("Identifier");
+      addInfo("GPS", true);
+      addInfo("Publisher");
+      addInfo("Photograph");
+      addInfo("Exclusive right");
+      addInfo("Year");
+      addInfo("Recto_text");
+      addInfo("Verse_text");
+      addInfo("Dimentions");
+      addInfo("Stamps");
+      addInfo("Number of cards available");
+      addInfo("Region");
+      addInfo("Description");
+      addInfo("Color");
+      addInfo("Condition");
+      addInfo("Collection");
+      addInfo("Scanned by");
+      addInfo("Metadata by");
+      addInfo("Geographical markers");
+      addInfo("Image wrapper");
+      addInfo("Path", true);
 
-      function addInfo(label, value) {
+      function addInfo(label, isLink) {
+        var value = data[i][label];
+        if (isLink) {
+          value = makeLink(value);
+        }
         if (!value) {
           return;
         }
@@ -91,6 +98,7 @@ function setFullPage() {
     });
   });
 }
+<<<<<<< HEAD
 
 var DATA = [
   [
@@ -419,3 +427,5 @@ var DATA = [
 ];
 
 var IMAGE_URL_INDEX = DATA.length - 1;
+=======
+>>>>>>> 97cbda6 (json data)
